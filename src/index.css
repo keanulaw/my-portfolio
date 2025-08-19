@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Typography */
+  --font-heading: "Helvetica Neue", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #6b7280;
+  --color-dark: #000000;
+
+  /* Layout */
+  --max-width: 1200px;
+  --spacing: 2rem;
+  --transition: 0.3s ease;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* Centered content container */
+main {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: opacity var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+a:hover {
+  opacity: 0.6;
+}
+
+/* Buttons (minimalist) */
+button {
+  border: 1px solid var(--color-text);
+  background: transparent;
+  padding: 0.75em 1.5em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+button:hover {
+  background: var(--color-text);
+  color: white;
+}
+
+/* Project Grid (editorial style) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-card h3 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: var(--color-text);
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* Scrollbar (minimal) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--color-dark);
+    color: #f3f4f6;
+  }
+  a {
+    color: #f3f4f6;
+  }
+  .project-card h3 {
+    color: #f3f4f6;
+  }
+  .project-card p {
+    color: #d1d5db;
+  }
+}
