@@ -1,4 +1,6 @@
 import React from "react";
+import neoCareImage from "../assets/NeoCare.png";
+import dImage from "../assets/3d.png";
 
 function Projects() {
   const projects = [
@@ -7,7 +9,7 @@ function Projects() {
       title: "NeoCare",
       description: "Developed a mobile app and website designed to support pregnant women throughout their pregnancy journey, featuring a chatbot that allows easy consultation with an OB-GYN.",
       technologies: ["React-Native", "React.js", "Chatbot"],
-      image: "https://media.discordapp.net/attachments/1242839180506038373/1315935239989624832/NeoCare.png?ex=68a4c8f2&is=68a37772&hm=4557c354b0e4d2d52ca5f04c6c4611664ec7ccb2d3af7caa68b7b703cc991679&=&format=webp&quality=lossless&width=958&height=958",
+      image: [neoCareImage],
       github: "https://github.com/keanulaw/NeoCare-App.git",
       live: "#",
       featured: true,
@@ -18,7 +20,7 @@ function Projects() {
       title: "3D Website",
       description: "Immerse yourself in a new dimension of design with our interactive 3D experience powered by Spline and React. Built for modern creators and innovators like you.",
       technologies: ["React.js", "Spline"],
-      image: "https://images.unsplash.com/photo-1606813902914-8d8d0b3eebf9?w=400&h=300&fit=crop", // sample 3D abstract render
+      image: [dImage], // sample 3D abstract render
       github: "https://github.com/keanulaw/my-3d-website",
       live: "https://my-3d-website-krqk.vercel.app/", // once deployed to GitHub Pages
       featured: true,

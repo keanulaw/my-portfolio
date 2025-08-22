@@ -1,5 +1,6 @@
 // src/pages/About.jsx
 import React from "react";
+import meImage from "../assets/me.webp";
 
 function About() {
   return (
@@ -51,7 +52,7 @@ function About() {
                 {/* Profile Image */}
                 <div className="absolute inset-4 bg-white dark:bg-slate-800 rounded-full overflow-hidden shadow-xl">
                   <img 
-                    src="https://media.discordapp.net/attachments/828982363576729660/1407225388018438214/assets_task_01jwwqz5ykexw9fh13ch3ax65z_1749016420_img_0.webp?ex=68a55445&is=68a402c5&hm=6afed50d846a7e8b7b5888e77d354a4b6441f0fbdd87ce23e4319e571ae4fd3b&=&format=webp&width=638&height=958"
+                    src={meImage}
                     alt="Shannon Keanu A. Yase"
                     className="w-full h-100 object-cover"
                   />
