@@ -20,7 +20,7 @@ function Projects() {
       technologies: ["React.js", "Spline"],
       image: "https://images.unsplash.com/photo-1606813902914-8d8d0b3eebf9?w=400&h=300&fit=crop", // sample 3D abstract render
       github: "https://github.com/keanulaw/my-3d-website",
-      live: "https://keanulaw.github.io/my-3d-website", // once deployed to GitHub Pages
+      live: "https://my-3d-website-krqk.vercel.app/", // once deployed to GitHub Pages
       featured: true,
       period: "2025"
     },
