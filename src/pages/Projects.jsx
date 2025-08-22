@@ -15,14 +15,14 @@ function Projects() {
     },
     {
       id: 2,
-      title: "Clothing Store",
-      description: "Built a clothing store with a responsive interface, product cards, filters, and Stripe integration for seamless payments.",
-      technologies: ["React.js", "Express", "Stripe"],
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop",
-      github: "https://github.com/keanulaw/it-sysarch32-store-Yase",
-      live: "#",
+      title: "3D Website",
+      description: "Immerse yourself in a new dimension of design with our interactive 3D experience powered by Spline and React. Built for modern creators and innovators like you.",
+      technologies: ["React.js", "Spline"],
+      image: "https://images.unsplash.com/photo-1606813902914-8d8d0b3eebf9?w=400&h=300&fit=crop", // sample 3D abstract render
+      github: "https://github.com/keanulaw/my-3d-website",
+      live: "https://keanulaw.github.io/my-3d-website", // once deployed to GitHub Pages
       featured: true,
-      period: "2023 - 2024"
+      period: "2025"
     },
     {
       id: 3,
