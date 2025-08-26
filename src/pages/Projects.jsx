@@ -17,7 +17,7 @@ function Projects() {
     },
     {
       id: 2,
-      title: "3D Website",
+      title: "Galaxy Website",
       description: "Immerse yourself in a new dimension of design with our interactive 3D experience powered by Spline and React. Built for modern creators and innovators like you.",
       technologies: ["React.js", "Spline"],
       image: [dImage], // sample 3D abstract render
@@ -28,15 +28,15 @@ function Projects() {
     },
     {
       id: 3,
-      title: "Avalio",
-      description: "Developed a mobile application for motor renters and owners to securely list, browse, book, and manage rentals with verified profiles and in-app communication.",
-      technologies: ["React Native"],
+      title: "Phone Rental",
+      description: "Built a mobile application for phone rentals, enabling users to list devices, browse available phones, make secure bookings, and manage rentals with verified profiles and in-app messaging.",
+      technologies: ["React.js", "Spline"],
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-      github: "https://github.com/keanulaw",
+      github: "https://github.com/keanulaw/phone-rental",
       live: "#",
       featured: false,
-      period: "2024 - 2025"
-    }
+      period: "2025"
+    }    
   ];
 
   return (
