@@ -1,97 +1,50 @@
 import React from "react";
 
+const certifications = [
+  {
+    name: "Safe Spaces Act",
+    icon: "🛡️",
+    description:
+      "Understanding and applying the Safe Spaces Act to help create inclusive, respectful environments.",
+  },
+  {
+    name: "Cybersecurity",
+    icon: "🔒",
+    description:
+      "Fundamentals of cybersecurity, security best practices, and threat-prevention awareness.",
+  },
+  {
+    name: "Career in the IT Industry",
+    icon: "💼",
+    description:
+      "Career development, industry trends, and professional growth in Information Technology.",
+  },
+];
+
 function Certifications() {
-  const certifications = [
-    {
-      name: "Safe Spaces Act",
-      issuer: "UC Banilad",
-      date: "2025",
-      description: "Certification in understanding and implementing the Safe Spaces Act for creating inclusive and respectful environments.",
-      logo: "🛡️",
-      level: "Government",
-      verification: "#",
-      badge: "#"
-    },
-    {
-      name: "Cybersecurity",
-      issuer: "UC Banilad",
-      date: "2025",
-      description: "Professional certification in cybersecurity fundamentals, best practices, and threat prevention strategies.",
-      logo: "🔒",
-      level: "Professional",
-      verification: "#",
-      badge: "#"
-    },
-    {
-      name: "Career in the IT Industry",
-      issuer: "UC Banilad",
-      date: "2025",
-      description: "Comprehensive certification covering career development, industry trends, and professional growth in Information Technology.",
-      logo: "💼",
-      level: "Professional",
-      verification: "#",
-      badge: "#"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl font-bold text-slate-800 dark:text-white mb-6">
-            Professional Certifications
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Industry-recognized credentials that validate my expertise and commitment to continuous learning
-          </p>
-        </div>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          <span className="bg-gradient-to-r from-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
+            Certifications
+          </span>
+        </h2>
+      </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
-            <div key={index} className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-              {/* Header */}
-              <div className="p-6 border-b border-slate-200 dark:border-slate-700">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="text-4xl">{cert.logo}</div>
-                  <div className="text-right">
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      cert.level === "Professional" ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200" :
-                      cert.level === "Government" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" :
-                      "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                    }`}>
-                      {cert.level}
-                    </span>
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
-                  {cert.name}
-                </h3>
-                <p className="text-blue-600 dark:text-blue-400 font-semibold mb-1">
-                  {cert.issuer}
-                </p>
-                <div className="text-sm text-slate-600 dark:text-slate-400">
-                  Issued: {cert.date}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed">
-                  {cert.description}
-                </p>
-                
-                {/* Actions */}
-                
-              </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {certifications.map((cert) => (
+          <div
+            key={cert.name}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-indigo-400/40 hover:bg-white/[0.06]"
+          >
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-2xl">
+              {cert.icon}
             </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        
+            <h3 className="text-lg font-bold text-white">{cert.name}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{cert.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
