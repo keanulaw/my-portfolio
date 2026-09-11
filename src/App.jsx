@@ -1,52 +1,67 @@
-// src/App.jsx
-import React from "react";
+import { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Hero from "./components/Hero";
-import FeaturedWork from "./components/FeaturedWork";
-import About from "./pages/About";
 import Projects from "./pages/Projects";
+import Experience from "./pages/Experience";
+import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Education from "./pages/Education";
 import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
-import "./tailwind.css";
-
-function App() {
+export default function App() {
+  useEffect(() => {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    )
+      return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.06 },
+    );
+    document.querySelectorAll(".reveal").forEach((el) => {
+      el.classList.add("reveal-ready");
+      observer.observe(el);
+    });
+    return () => {
+      observer.disconnect();
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => el.classList.remove("reveal-ready"));
+    };
+  }, []);
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Navbar />
-      <main className="pt-16">
+      <main id="main">
         <section id="home">
           <Hero />
         </section>
-        <section id="featured">
-          <FeaturedWork />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <section id="skills">
-          <Skills />
-        </section>
-        <section id="education">
-          <Education />
-        </section>
-        <section id="certifications">
-          <Certifications />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
+        <Projects />
+        <Experience />
+        <About />
+        <Skills />
+        <Education />
+        <Certifications />
+        <Contact />
       </main>
-
-      <footer className="border-t border-white/10 py-8 text-center text-sm text-zinc-500">
-        <p>© 2026 Shannon Keanu A. Yase · Built with Vite + React + Tailwind CSS</p>
+      <footer className="shell footer">
+        <p>© {new Date().getFullYear()} Shannon Keanu A. Yase</p>
+        <p>Built with React, Vite & Tailwind CSS</p>
+        <a className="text-link" href="#home">
+          Back to top <span aria-hidden="true">↑</span>
+        </a>
       </footer>
-    </div>
+    </>
   );
 }
-
-export default App;

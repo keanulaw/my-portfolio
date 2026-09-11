@@ -1,163 +1,134 @@
-import React from "react";
 import neoCareImage from "../assets/NeoCare.png";
-import dImage from "../assets/3d.png";
-
+import galaxyImage from "../assets/3d.png";
+import FeaturedWork from "../components/FeaturedWork";
+import { SectionHeading, ExternalLink } from "../components/ui";
 const projects = [
   {
-    title: "AI Automation & AI Edit Workflows",
+    title: "NeoCare",
+    subtitle: "Pregnancy support app",
+    role: "Mobile & web development",
     description:
-      "Built and improved an AI-powered video editing automation pipeline that turns raw client uploads into edited, client-ready deliverables — covering transcription, subtitle generation, hook/title overlays, dead-air and bad-take removal, b-roll selection, ad formatting, long-form clipping, and cloud-based deployment.",
-    technologies: ["Claude Code", "Deepgram", "Gemini", "Supabase", "Railway", "HyperFrame"],
-    icon: "🎬",
-    gradient: "from-indigo-500 to-fuchsia-500",
-    featured: true,
-  },
-  {
-    title: "NeoCare – Pregnancy Support App",
-    description:
-      "React Native mobile application for pregnancy support, tracking, and guidance, with doctor recommendations through a chatbot and a companion React.js website.",
-    technologies: ["React Native", "React.js", "Chatbot"],
+      "A React Native app for pregnancy support, tracking, and guidance. A chatbot provides doctor recommendations, with a companion React website.",
+    stack: "React Native / React.js / Chatbot",
     image: neoCareImage,
+    alt: "NeoCare logo — Tender Care for Two",
+    mediaClass: "neocare",
     github: "https://github.com/keanulaw/NeoCare-App.git",
   },
   {
-    title: "Personal Development Portfolio",
+    title: "Galaxy 3D",
+    subtitle: "Interactive web experience",
+    role: "Web development",
     description:
-      "Designed and deployed a responsive portfolio website showcasing my personal projects and development work — the site you're viewing now.",
-    technologies: ["React", "Vite", "Tailwind CSS"],
-    icon: "🧑‍💻",
-    gradient: "from-sky-500 to-indigo-500",
-    github: "https://github.com/keanulaw/my-portfolio",
-  },
-  {
-    title: "Cloud & Infrastructure Projects",
-    description:
-      "Deployed websites on Google Cloud Platform and hosted/configured a Minecraft server on an Ubuntu virtual machine using Oracle Cloud, SSH, and hands-on server configuration.",
-    technologies: ["Google Cloud", "Oracle Cloud", "Ubuntu Linux", "SSH"],
-    icon: "☁️",
-    gradient: "from-emerald-500 to-teal-500",
-  },
-  {
-    title: "Galaxy 3D Website",
-    description:
-      "An interactive 3D web experience powered by Spline and React — an immersive, design-forward landing site for modern creators.",
-    technologies: ["React.js", "Spline"],
-    image: dImage,
+      "An interactive 3D landing site for modern creators, bringing a Spline scene into a responsive React experience.",
+    stack: "React.js / Spline",
+    image: galaxyImage,
+    alt: "Galaxy 3D website preview showing a luminous spiral galaxy",
+    mediaClass: "galaxy",
     github: "https://github.com/keanulaw/my-3d-website",
     live: "https://my-3d-website-krqk.vercel.app/",
   },
+];
+const more = [
   {
     title: "Phone Rental App",
+    role: "Mobile application",
     description:
-      "A mobile application for phone rentals — list devices, browse available phones, make secure bookings, and manage rentals with verified profiles and in-app messaging.",
-    technologies: ["React.js", "Mobile"],
-    icon: "📱",
-    gradient: "from-fuchsia-500 to-rose-500",
+      "List devices, browse available phones, and manage secure bookings and rentals with verified profiles and in-app messaging.",
+    stack: "React.js / Mobile",
     github: "https://github.com/keanulaw/phone-rental",
   },
+  {
+    title: "Cloud & Infrastructure Projects",
+    role: "Deployment & server configuration",
+    description:
+      "Deployed websites on Google Cloud and configured a Minecraft server on an Ubuntu virtual machine with Oracle Cloud and SSH.",
+    stack: "Google Cloud / Oracle Cloud / Ubuntu Linux / SSH",
+  },
+  {
+    title: "Personal Development Portfolio",
+    role: "Design & web development",
+    description:
+      "Designed and deployed this responsive portfolio to bring together my projects and development work.",
+    stack: "React / Vite / Tailwind CSS",
+    github: "https://github.com/keanulaw/my-portfolio",
+  },
 ];
-
-function ProjectMedia({ project }) {
-  if (project.image) {
-    return (
-      <div className="relative h-48 overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent" />
-      </div>
-    );
-  }
+export default function Projects() {
   return (
-    <div className={`relative flex h-48 items-center justify-center bg-gradient-to-br ${project.gradient}`}>
-      <span className="text-6xl drop-shadow-lg">{project.icon}</span>
-      <div className="absolute inset-0 bg-zinc-950/10" />
-    </div>
-  );
-}
-
-function Projects() {
-  return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-          <span className="bg-gradient-to-r from-indigo-400 to-fuchsia-400 bg-clip-text text-transparent">
-            Projects
-          </span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
-          A mix of real-world AI automation work and projects I&apos;ve built across mobile, web,
-          and cloud.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <div
-            key={project.title}
-            className={`group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-400/40 ${
-              project.featured ? "md:col-span-2 lg:col-span-1 ring-1 ring-indigo-400/40" : ""
-            }`}
-          >
-            <ProjectMedia project={project} />
-
-            <div className="flex flex-1 flex-col p-6">
-              <div className="mb-2 flex items-center gap-2">
-                <h3 className="text-lg font-bold text-white">{project.title}</h3>
-                {project.featured && (
-                  <span className="rounded-full bg-gradient-to-r from-indigo-500/20 to-fuchsia-500/20 px-2.5 py-0.5 text-xs font-semibold text-indigo-200 ring-1 ring-inset ring-indigo-400/30">
-                    Featured
-                  </span>
-                )}
-              </div>
-
-              <p className="flex-1 text-sm leading-relaxed text-zinc-400">
-                {project.description}
+    <section className="shell section work-section" id="projects">
+      <SectionHeading
+        number="01"
+        title="Selected work"
+        note="AI automation, mobile, web & cloud."
+      />
+      <FeaturedWork />
+      <div className="visual-projects">
+        {projects.map((project, i) => (
+          <article className="visual-project reveal" key={project.title}>
+            <a
+              className={`project-image ${project.mediaClass}`}
+              href={project.live || project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} ${project.live ? "live website" : "source code"}`}
+            >
+              <img
+                src={project.image}
+                alt={project.alt}
+                loading="lazy"
+                decoding="async"
+                width={project.mediaClass === "galaxy" ? 1919 : 1562}
+                height={project.mediaClass === "galaxy" ? 1079 : 1562}
+              />
+              <span className="image-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+            <div className="project-title">
+              <h3>{project.title}</h3>
+              <span className="eyebrow">0{i + 2}</span>
+            </div>
+            <p className="project-subtitle">{project.subtitle}</p>
+            <p className="project-description">{project.description}</p>
+            <div className="project-meta">
+              <p>
+                <span>Role</span>
+                {project.role}
               </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md border border-white/10 bg-zinc-900 px-2.5 py-1 text-xs font-medium text-zinc-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {(project.github || project.live) && (
-                <div className="mt-5 flex gap-3">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 rounded-lg border border-white/15 bg-white/5 py-2 text-center text-sm font-medium text-zinc-100 transition-colors hover:border-white/30 hover:bg-white/10"
-                    >
-                      Code
-                    </a>
-                  )}
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 rounded-lg bg-gradient-to-r from-indigo-500 to-fuchsia-500 py-2 text-center text-sm font-semibold text-white transition-all hover:scale-[1.03]"
-                    >
-                      Live Demo
-                    </a>
-                  )}
-                </div>
+              <p>
+                <span>Stack</span>
+                {project.stack}
+              </p>
+            </div>
+            <div className="project-links">
+              <ExternalLink href={project.github}>Source code</ExternalLink>
+              {project.live && (
+                <ExternalLink href={project.live}>Live project</ExternalLink>
               )}
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+      <div className="more-work">
+        <h3 className="eyebrow">More projects</h3>
+        {more.map((project, i) => (
+          <article className="project-row reveal" key={project.title}>
+            <span className="row-number">0{i + 4}</span>
+            <div>
+              <h4>{project.title}</h4>
+              <p className="row-role">{project.role}</p>
+            </div>
+            <div>
+              <p>{project.description}</p>
+              <p className="row-stack">{project.stack}</p>
+              {project.github && (
+                <ExternalLink href={project.github}>Source code</ExternalLink>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
-
-export default Projects;
