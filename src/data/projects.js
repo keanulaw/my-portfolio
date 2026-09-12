@@ -3,6 +3,17 @@ import neocare from "../assets/NeoCare.png";
 
 export const projects = [
   {
+    id: "video",
+    title: "Video Editing Portfolio",
+    category: "Featured / Creative development",
+    role: "Design, development & video editing",
+    description:
+      "A portfolio for my short-form, long-form, and color grading work. I built an editorial layout with scroll reveals, an interactive toolkit, and on-demand video players that keep the page light.",
+    stack: "React · Vite · CSS · IntersectionObserver",
+    github: "https://github.com/keanulaw/video-editing-portfolio",
+    live: "https://video-editing-portfolio-sooty-gamma.vercel.app/",
+  },
+  {
     id: "galaxy",
     title: "Galaxy 3D",
     category: "3D on the web",

@@ -1,25 +1,26 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { showcaseFrame } from "../lib/showcase";
 
-const query =
-  "(min-width: 1000px) and (min-height: 760px) and (hover: hover) and (pointer: fine)";
+// Pin only where the stage has room; activation never depends on pointer or focus.
+const query = "(min-width: 1000px) and (min-height: 680px)";
 
-export default function useProjectShowcase(count, viewMode) {
+export default function useProjectShowcase(count) {
   const railRef = useRef(null);
   const stageRef = useRef(null);
   const progressRef = useRef(null);
-  const metricsRef = useRef({ start: 0, step: 1 });
-  const [capable, setCapable] = useState(false);
+  const [enabled, setEnabled] = useState(
+    () => window.matchMedia(query).matches,
+  );
   const [active, setActive] = useState(0);
-  const [reduced, setReduced] = useState(true);
-  const enabled =
-    capable && viewMode !== "list" && (!reduced || viewMode === "gallery");
+  const [reduced, setReduced] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   useEffect(() => {
     const media = window.matchMedia(query);
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => {
-      setCapable(media.matches);
+      setEnabled(media.matches);
       setReduced(motion.matches);
     };
     update();
@@ -36,7 +37,7 @@ export default function useProjectShowcase(count, viewMode) {
     const stage = stageRef.current;
     const panels = [...stage.querySelectorAll(".showcase-panel")];
     const copies = panels.map((panel) => panel.querySelector(".showcase-copy"));
-    if (!enabled) {
+    const reset = () => {
       rail.style.removeProperty("height");
       panels.forEach((panel) => {
         panel.removeAttribute("style");
@@ -44,50 +45,63 @@ export default function useProjectShowcase(count, viewMode) {
         panel.removeAttribute("aria-hidden");
       });
       copies.forEach((copy) => copy.style.removeProperty("opacity"));
+    };
+    if (!enabled) {
+      reset();
       return;
     }
     let frame = 0;
     let lastActive = -1;
-    let lastProgress = -1;
+    let lastPosition = -Infinity;
+    let metrics = { start: 0, step: 1 };
     const render = () => {
       frame = 0;
-      const { start, step } = metricsRef.current;
+      // The flagship gets an extra half chapter of reading time.
+      const position = (window.scrollY - metrics.start) / metrics.step;
+      const chapterPosition = position <= 1.5 ? position / 1.5 : position - 0.5;
+      if (chapterPosition === lastPosition) return;
+      lastPosition = chapterPosition;
       const {
         base,
         mix,
         active: nextActive,
         progress,
-      } = showcaseFrame((window.scrollY - start) / step, count);
-      if (progress === lastProgress) return;
-      lastProgress = progress;
+      } = showcaseFrame(chapterPosition, count);
       panels.forEach((panel, i) => {
         const outgoing = i === base;
         const incoming = i === base + 1;
-        const opacity = outgoing ? 1 - mix : incoming ? mix : 0;
-        const travel = outgoing ? -mix : incoming ? 1 - mix : 0;
+        // Reduced motion keeps the same automatic sequence, with no interpolation.
+        const opacity = reduced
+          ? Number(i === nextActive)
+          : outgoing
+            ? 1 - mix
+            : incoming
+              ? mix
+              : 0;
+        const travel = reduced ? 0 : outgoing ? -mix : incoming ? 1 - mix : 0;
         panel.style.opacity = opacity;
         panel.style.visibility = opacity > 0 ? "visible" : "hidden";
         panel.style.setProperty("--chapter-y", `${travel * 36}px`);
         panel.style.setProperty(
           "--chapter-scale",
-          outgoing ? 1 - mix * 0.025 : 1 + (1 - mix) * 0.025,
+          reduced ? 1 : outgoing ? 1 - mix * 0.025 : 1 + (1 - mix) * 0.025,
         );
         panel.style.setProperty(
           "--chapter-turn",
           `${travel * (i % 2 ? -0.35 : 0.35)}deg`,
         );
         panel.style.setProperty("--copy-y", `${travel * 18}px`);
-        // Text exits before the next paragraph enters, avoiding double exposure.
-        copies[i].style.opacity = outgoing
-          ? Math.max(0, 1 - mix * 2.5)
-          : incoming
-            ? Math.max(0, (mix - 0.45) / 0.55)
-            : 0;
+        copies[i].style.opacity = reduced
+          ? Number(i === nextActive)
+          : outgoing
+            ? Math.max(0, 1 - mix * 2.5)
+            : incoming
+              ? Math.max(0, (mix - 0.45) / 0.55)
+              : 0;
         panel.inert = i !== nextActive;
         panel.setAttribute("aria-hidden", String(i !== nextActive));
       });
       if (nextActive !== lastActive) {
-        // Don't leave keyboard focus stranded in a chapter that becomes inert.
         const focusedPanel = document.activeElement?.closest(".showcase-panel");
         if (focusedPanel && focusedPanel !== panels[nextActive])
           panels[nextActive].querySelector("h3").focus({ preventScroll: true });
@@ -105,17 +119,17 @@ export default function useProjectShowcase(count, viewMode) {
     const measure = () => {
       const height = stage.offsetHeight;
       const step = Math.max(460, height * 0.9);
-      rail.style.height = `${height + step * (count - 1) + step * 0.35}px`;
-      metricsRef.current = {
+      rail.style.height = `${height + step * (count - 1 + 0.5 + 0.35)}px`;
+      metrics = {
         start: rail.getBoundingClientRect().top + window.scrollY - 88,
         step,
       };
-      queue();
+      lastPosition = -Infinity;
+      render();
     };
     measure();
     const resize = new ResizeObserver(measure);
     resize.observe(stage);
-    // Fonts and content above the rail can move its starting position.
     let disposed = false;
     document.fonts.ready.then(() => {
       if (!disposed) measure();
@@ -128,36 +142,9 @@ export default function useProjectShowcase(count, viewMode) {
       resize.disconnect();
       window.removeEventListener("scroll", queue);
       window.removeEventListener("resize", measure);
-      rail.style.removeProperty("height");
-      panels.forEach((panel) => {
-        panel.removeAttribute("style");
-        panel.inert = false;
-        panel.removeAttribute("aria-hidden");
-      });
-      copies.forEach((copy) => copy.style.removeProperty("opacity"));
+      reset();
     };
-  }, [enabled, count]);
+  }, [enabled, reduced, count]);
 
-  function goTo(index) {
-    if (enabled)
-      window.scrollTo({
-        top: metricsRef.current.start + metricsRef.current.step * index,
-        behavior: "smooth",
-      });
-    else {
-      const panel = stageRef.current.querySelectorAll(".showcase-panel")[index];
-      panel?.scrollIntoView({ behavior: "auto", block: "start" });
-    }
-  }
-
-  return {
-    railRef,
-    stageRef,
-    progressRef,
-    capable,
-    reduced,
-    enabled,
-    active,
-    goTo,
-  };
+  return { railRef, stageRef, progressRef, enabled, active };
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { projects } from "../data/projects";
 import { SectionHeading, ExternalLink } from "../components/ui";
 import ProjectVisual from "../components/ProjectVisual";
@@ -9,23 +9,16 @@ import "./projects.css";
 const number = (value) => String(value).padStart(2, "0");
 
 export default function Projects() {
-  const [viewMode, setViewMode] = useState("auto");
   const dialogRef = useRef(null);
   const returnFocusRef = useRef(null);
   const {
     railRef,
     stageRef,
     progressRef,
-    capable,
-    reduced,
+
     enabled,
     active,
-    goTo,
-  } = useProjectShowcase(projects.length, viewMode);
-
-  useEffect(() => {
-    setViewMode("auto");
-  }, [reduced]);
+  } = useProjectShowcase(projects.length);
 
   function openCaseStudy(event) {
     event?.preventDefault();
@@ -51,16 +44,6 @@ export default function Projects() {
     };
   }, []);
 
-  function switchMode() {
-    setViewMode(enabled ? "list" : "gallery");
-    // Keep the gallery heading in view when collapsing the long scroll rail.
-    requestAnimationFrame(() =>
-      document
-        .getElementById("projects")
-        .scrollIntoView({ behavior: "instant" }),
-    );
-  }
-
   return (
     <section
       id="projects"
@@ -69,7 +52,7 @@ export default function Projects() {
       <SectionHeading
         number="01"
         title="Selected work"
-        note="Six projects. A few different ways of building."
+        note="Seven projects. A few different ways of building."
       />
       <div ref={railRef} className="showcase-rail">
         <div ref={stageRef} className="showcase-stage">
@@ -83,15 +66,6 @@ export default function Projects() {
               </span>
             </p>
             <div className="showcase-options">
-              {capable && (
-                <button onClick={switchMode}>
-                  {enabled
-                    ? "View as list"
-                    : reduced
-                      ? "Enable scroll effects"
-                      : "Scroll gallery"}
-                </button>
-              )}
               <a href="#experience">
                 Skip to experience <span aria-hidden="true">↘</span>
               </a>
@@ -110,13 +84,15 @@ export default function Projects() {
                     <ProjectVisual project={project} />
                   </div>
                   <span className="showcase-art-caption">
-                    {project.id === "galaxy"
-                      ? "Spline scene preview"
-                      : project.id === "neocare"
-                        ? "NeoCare identity"
-                        : project.id === "portfolio"
-                          ? "Interface excerpt"
-                          : "Project workflow"}
+                    {project.id === "video"
+                      ? "Video portfolio / Interface excerpt"
+                      : project.id === "galaxy"
+                        ? "Spline scene preview"
+                        : project.id === "neocare"
+                          ? "NeoCare identity"
+                          : project.id === "portfolio"
+                            ? "Interface excerpt"
+                            : "Project workflow"}
                   </span>
                 </div>
                 <div className="showcase-copy">
@@ -143,7 +119,9 @@ export default function Projects() {
                   <div className="chapter-links">
                     {project.live && (
                       <ExternalLink href={project.live}>
-                        View project
+                        {project.id === "video"
+                          ? "View portfolio"
+                          : "View project"}
                       </ExternalLink>
                     )}
                     {project.github && (
@@ -161,18 +139,18 @@ export default function Projects() {
           </div>
           {enabled && (
             <div className="showcase-bottom">
-              <nav className="chapter-navigation" aria-label="Choose a project">
+              <ol className="chapter-navigation" aria-label="Project sequence">
                 {projects.map((p, i) => (
-                  <button
+                  <li
                     key={p.id}
-                    onClick={() => goTo(i)}
+
                     aria-label={`Project ${i + 1}: ${p.title}`}
                     aria-current={active === i ? "step" : undefined}
                   >
                     {number(i + 1)}
-                  </button>
+                  </li>
                 ))}
-              </nav>
+              </ol>
               <div className="chapter-progress" aria-hidden="true">
                 <span ref={progressRef} />
               </div>

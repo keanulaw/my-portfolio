@@ -1,4 +1,71 @@
 export default function ProjectVisual({ project }) {
+  if (project.id === "video")
+    return (
+      <div
+        className="video-site-preview"
+        role="img"
+        aria-label="Video editing portfolio interface: Shannon, Video Editor, with frames from Serious Short, Voice Over B-Roll, and Gaming Content"
+      >
+        <div className="video-preview-bar">
+          <b>
+            SHANNON <span>▶</span>
+          </b>
+          <span>Work / About / Contact</span>
+        </div>
+        <div className="video-preview-body">
+          <span className="video-preview-kicker">
+            SHORT FORM / LONG FORM / MOTION GRAPHICS
+          </span>
+          <strong>
+            SHANNON<span>✳</span>
+          </strong>
+          <b className="video-preview-title">
+            VIDEO EDITOR<span>.</span>
+          </b>
+          <p>
+            The right cut.
+            <br />
+            The right feeling.
+          </p>
+          <div className="video-preview-frames">
+            <div>
+              <img
+                src="https://lh3.googleusercontent.com/d/1h3w_7NTVTj9UMzs94Cj7qAj4f61yzHk4=w360"
+                alt=""
+                width="360"
+                height="640"
+                loading="lazy"
+              />
+              <span>01 / SERIOUS SHORT</span>
+            </div>
+            <div>
+              <img
+                src="https://lh3.googleusercontent.com/d/1tfFOu3tqEaMO0Euchu6n-WXOT1fNfg2Q=w480"
+                alt=""
+                width="480"
+                height="270"
+                loading="lazy"
+              />
+              <span>02 / VOICE OVER B-ROLL</span>
+            </div>
+            <div>
+              <img
+                src="https://img.youtube.com/vi/n-OAW9e92Sw/hqdefault.jpg"
+                alt=""
+                width="480"
+                height="360"
+                loading="lazy"
+              />
+              <span>03 / GAMING CONTENT</span>
+            </div>
+          </div>
+          <div className="video-preview-footer">
+            <span>EDIT. REFINE. REPEAT.</span>
+            <span>SCROLL TO START ↓</span>
+          </div>
+        </div>
+      </div>
+    );
   if (project.image)
     return (
       <img

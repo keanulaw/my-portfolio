@@ -4,15 +4,13 @@ Developer portfolio built with React 19, Vite, and Tailwind CSS. Locally hosted 
 
 ## Projects and scrolling
 
-All six projects are presented in one sequence: Galaxy 3D, AI edit pipeline, NeoCare, Phone Rental App, Cloud & Infrastructure, and the portfolio itself. The original information, assets, links, and other portfolio sections are preserved. Galaxy's stack reflects its actual source: React, Spline, Framer Motion, Tailwind CSS, and Vite.
+Seven projects appear in this order: Video Editing Portfolio, Galaxy 3D, AI edit pipeline, NeoCare, Phone Rental App, Cloud & Infrastructure, and the developer portfolio itself. Existing information and other sections remain intact. The flagship video portfolio uses a lightweight interface excerpt with actual project thumbnails; it loads no video players. Its live and GitHub links point to the published video portfolio.
 
-On sufficiently large desktop viewports, a native sticky section holds the project display while ordinary page scrolling advances chapters. Each chapter pauses for reading, then the image scales and moves while the next arrives. Text fades out before its replacement enters. The rail releases after the sixth project. Numbered buttons jump directly to a chapter; the list toggle and Experience link offer immediate alternatives.
+On desktop viewports at least 1000px wide and 680px tall, the native sticky gallery activates automatically. Ordinary document scrolling advances every chapter, then releases into Experience. The first project gets an extra half chapter of reading time. No activation button, manual mode, pointer capability, focus state, custom wheel handler, or drag state controls activation. Sequence numbers are passive indicators. The Experience link remains an optional shortcut.
 
-Mobile, short viewports, touch devices, and reduced-motion preferences use a normal flowing list. Reduced-motion desktop visitors can explicitly choose "Enable scroll effects" for the current page session; nothing is persisted and the system preference is not changed.
+Reduced motion preserves the same automatic sequence using immediate chapter changes, with no translation, rotation, scaling, or crossfade. Mobile and compact viewports use a normal flowing list with all seven projects visible. The device preference is never overridden.
 
-No animation dependency was added. Scroll updates are batched with requestAnimationFrame; positions are measured on resize, and React state updates only when the active chapter changes. Inactive chapters are inert and hidden from assistive technology. All projects stay available in the list. The full AI case study reuses the existing component in a native dialog with Escape and focus restoration.
-
-Workflow visuals for projects without supplied screenshots are labeled as diagrams. No project results, metrics, employers, or dates have been invented.
+No animation dependency was added. Scroll work is batched with requestAnimationFrame; geometry is measured on resize and font readiness. React state changes only when the active chapter changes. Inactive chapters are inert and hidden from assistive technology. The AI case study uses the existing native dialog with Escape and focus restoration.
 
 ## Development
 
