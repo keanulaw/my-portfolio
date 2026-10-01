@@ -1,4 +1,20 @@
 export default function ProjectVisual({ project }) {
+  if (project.visual)
+    return (
+      <div className="showcase-diagram pipeline-visual">
+        <span className="eyebrow">{project.visual.label}</span>
+        <div className="pipeline-steps">
+          {project.visual.steps.map(([number, title, detail]) => (
+            <div key={number}>
+              <span>{number}</span>
+              <strong>{title}</strong>
+              <p>{detail}</p>
+            </div>
+          ))}
+        </div>
+        <span className="diagram-caption">{project.visual.caption}</span>
+      </div>
+    );
   if (project.id === "video")
     return (
       <div

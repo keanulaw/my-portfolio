@@ -14,6 +14,36 @@ export const projects = [
     live: "https://video-editing-portfolio-sooty-gamma.vercel.app/",
   },
   {
+    id: "reel",
+    title: "Reel & Resist — Stillwater",
+    category: "Browser game",
+    role: "Game design & web development",
+    description:
+      "A bird’s-eye fishing game with circular reeling controls, fish fights, and gear progression. Catches earn coins and XP, while equipment and personal bests are saved locally between sessions.",
+    stack: "JavaScript · Canvas 2D · Web Audio · localStorage",
+    github: "https://github.com/keanulaw/reel-and-resist",
+    visual: {
+      label: "Fishing gameplay",
+      steps: [["01", "Cast", "Find a fish & hook"], ["02", "Reel", "Manage tension & fish runs"], ["03", "Upgrade", "Earn coins, XP & gear"]],
+      caption: "Canvas artwork / procedural audio / local saves",
+    },
+  },
+  {
+    id: "story",
+    title: "AI Story Video Editor",
+    category: "Dialogue-to-video prototype",
+    role: "Web development & video tooling",
+    description:
+      "A local dialogue-to-video editor that turns a script into animated conversation scenes. It detects speakers, applies rule-based reactions and sound effects, previews the story, and renders an MP4 with Remotion.",
+    stack: "Next.js · React · TypeScript · Tailwind CSS · Remotion",
+    github: "https://github.com/keanulaw/ai-story-video-editor",
+    visual: {
+      label: "Dialogue to video",
+      steps: [["01", "Script", "Characters & dialogue"], ["02", "Preview", "Animated scenes & reactions"], ["03", "Export", "Render a local MP4"]],
+      caption: "Script → scene data → Remotion video",
+    },
+  },
+  {
     id: "galaxy",
     title: "Galaxy 3D",
     category: "3D on the web",

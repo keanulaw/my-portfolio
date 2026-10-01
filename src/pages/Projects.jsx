@@ -52,7 +52,7 @@ export default function Projects() {
       <SectionHeading
         number="01"
         title="Selected work"
-        note="Seven projects. A few different ways of building."
+        note={`${projects.length} projects. A few different ways of building.`}
       />
       <div ref={railRef} className="showcase-rail">
         <div ref={stageRef} className="showcase-stage">
