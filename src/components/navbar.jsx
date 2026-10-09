@@ -47,7 +47,7 @@ export default function Navbar() {
           onClick={() => setOpen(false)}
           aria-label="Shannon, home"
         >
-          shannon<span className="accent">.</span>
+          shannon
         </a>
         <button
           id="menu-toggle"
@@ -75,7 +75,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub <span aria-hidden="true">↗</span>
+            GitHub
           </a>
         </div>
       </nav>

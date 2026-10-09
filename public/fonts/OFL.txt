@@ -1,4 +1,7 @@
-Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+Fonts in this folder are licensed under the SIL Open Font License 1.1 (text below):
+- Bricolage Grotesque (c) The Bricolage Grotesque Project Authors
+- JetBrains Mono (c) JetBrains s.r.o.
+
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
