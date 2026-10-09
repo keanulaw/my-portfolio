@@ -20,16 +20,16 @@ const features = [
 ];
 export default function FeaturedWork() {
   return (
-    <article className="featured-project reveal" id="featured">
+    <article className="featured-project" id="featured">
       <div className="feature-intro">
-        <span className="eyebrow">01 / Featured work</span>
-        <span className="feature-recency">Most recent · AI automation</span>
+        <span className="meta">Featured work</span>
+        <span className="feature-recency">Most recent work, AI automation</span>
       </div>
       <div className="feature-body">
         <div>
           <h3>
             AI automation &<br />
-            AI edit pipeline<span>.</span>
+            AI edit pipeline
           </h3>
           <p className="feature-lead">
             From raw uploads to
@@ -46,7 +46,7 @@ export default function FeaturedWork() {
           </p>
         </div>
         <figure className="workflow">
-          <figcaption className="eyebrow">The editing workflow</figcaption>
+          <figcaption className="meta">The editing workflow</figcaption>
           <ol>
             <li>
               <span>01</span>
@@ -79,8 +79,8 @@ export default function FeaturedWork() {
         </figure>
       </div>
       <div className="feature-stack">
-        Claude Code / Deepgram / Gemini / Supabase / Vercel / Railway / React /
-        Next.js / HyperFrame
+        Claude Code, Deepgram, Gemini, Supabase, Vercel, Railway, React, Next.js,
+        HyperFrame
       </div>
       <details className="case-details">
         <summary>

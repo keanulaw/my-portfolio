@@ -2,10 +2,10 @@ import { SectionHeading } from "../components/ui";
 export default function Experience() {
   return (
     <section className="shell section" id="experience">
-      <SectionHeading number="02" title="Experience" />
-      <div className="experience-row reveal">
+      <SectionHeading title="Experience" />
+      <div className="experience-row">
         <div className="experience-when">
-          <span className="eyebrow">Most recent work</span>
+          <span className="meta">Most recent work</span>
           <p>AI automation & creative media</p>
         </div>
         <div>
@@ -23,7 +23,7 @@ export default function Experience() {
             moves raw client uploads toward finished, client-ready content.
           </p>
           <a className="text-link" href="#featured">
-            Explore the project <span aria-hidden="true">↗</span>
+            Read the case study
           </a>
         </div>
       </div>

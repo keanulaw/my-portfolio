@@ -3,8 +3,8 @@ import { SectionHeading } from "../components/ui";
 export default function About() {
   return (
     <section className="shell section" id="about">
-      <SectionHeading number="03" title="A little about me" />
-      <div className="about-grid reveal">
+      <SectionHeading title="A little about me" />
+      <div className="about-grid">
         <figure className="portrait">
           <img
             src={portrait}
@@ -42,7 +42,7 @@ export default function About() {
             creative media.
           </p>
           <a className="text-link" href="#contact">
-            Let's talk <span aria-hidden="true">↗</span>
+            Let's talk
           </a>
         </div>
       </div>

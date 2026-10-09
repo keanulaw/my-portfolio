@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Hero from "./components/Hero";
 import Projects from "./pages/Projects";
@@ -9,34 +8,6 @@ import Education from "./pages/Education";
 import Certifications from "./pages/Certifications";
 import Contact from "./pages/Contact";
 export default function App() {
-  useEffect(() => {
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      !("IntersectionObserver" in window)
-    )
-      return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.06 },
-    );
-    document.querySelectorAll(".reveal").forEach((el) => {
-      el.classList.add("reveal-ready");
-      observer.observe(el);
-    });
-    return () => {
-      observer.disconnect();
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => el.classList.remove("reveal-ready"));
-    };
-  }, []);
   return (
     <>
       <a className="skip-link" href="#main">
