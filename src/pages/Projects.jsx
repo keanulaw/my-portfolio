@@ -68,7 +68,7 @@ export default function Projects() {
 
       <article className="viewer" aria-live="polite" aria-labelledby="viewer-title">
         <div className="viewer-screen">
-          <ProjectVisual project={project} />
+          <ProjectVisual key={project.id} project={project} />
         </div>
         <div className="viewer-copy">
           <p className="viewer-kind">{project.category}</p>
